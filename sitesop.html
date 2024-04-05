@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculo de dispesas</title>
+  <img style="width: 100px; position: relative; left: 450px; top: 100px;" src="sitesop.png">
+  <img style="width: 100px; position: relative; left: 850px; top: 100px;" src="sitesop.png">
+  <center>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: larger;
+      background-color: rgb(254, 165, 217);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    label, input, button {
+      width: 50%;
+    }
+    label {
+      text-align: center;
+    }
+    input {
+      padding: 5px;
+    }
+    button {
+      padding: 20px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: large;
+      background-color: rgb(254, 116, 190) ;
+      color: black;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff12d8;
+    }
+  </style>
+</head>
+<body>
+  <h1>Calculadora de despesas</h1>
+</center>
+  <form id="expense-form">
+    <label for="salary">Folha de pagamento: (salário líquido)</label>
+    <input type="number" id="salary" name="salary" step="0.01" required><br>
+
+    <label for="rent">Aluguel:</label>
+    <input type="number" id="rent" name="rent" step="0.01" required><br>
+
+    <label for="water">Água:</label>
+    <input type="number" id="water" name="water" step="0.01" required><br>
+
+    <label for="electricity">Energia Elétrica:</label>
+    <input type="number" id="electricity" name="electricity" step="0.01" required><br>
+
+    <label for="taxes">Impostos:</label>
+    <input type="number" id="taxes" name="taxes" step="0.01" required><br>
+
+    <label for="other">Outros gastos:</label>
+    <input type="number" id="other" name="other" step="0.01" required><br>
+
+    <button type="submit">Calcular despesas</button>
+  </form>
+  <center>
+  <div id="results"></div>
+  <script>
+    document.getElementById('expense-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const rent = document.getElementById('rent').value;
+      const water = document.getElementById('water').value;
+      const electricity = document.getElementById('electricity').value;
+      const taxes = document.getElementById('taxes').value;
+      const salary = document.getElementById('salary').value;
+      const other = document.getElementById('other').value;
+
+      const totalExpense = parseFloat(rent) + parseFloat(water) + parseFloat(electricity) + parseFloat(taxes) + parseFloat(other);
+      const averageExpense = totalExpense / 5;
+      const annualExpense = totalExpense * 12;
+      const final = salary - totalExpense
+   
+      document.getElementById('results').innerHTML = `
+      <p> <b>Gasto total:</b> ${totalExpense.toFixed(2)} </p>
+      <p> <b>Gasto em media:</b> ${averageExpense.toFixed(2)}</p>
+      <p><b>Gasto por ano:</b> ${annualExpense.toFixed(2)}</p>
+      <p> <b>Salário final:</b> ${final.toFixed(2)}</p>
+
+      `;
+    });
+  </script>
+  </center>
+</body>
+</html>
